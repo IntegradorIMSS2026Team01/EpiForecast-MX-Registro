@@ -44,7 +44,8 @@
       7962  pyproject.toml
       8694  README_BUNDLE.md
      36967  README.md
-      1142  requirements.txt
+      6363  requirements.lock
+      1240  requirements.txt
       4631  scripts/actualiza_barra_fechas.py
       6688  scripts/actualiza_semanal.sh
      17415  scripts/avance5_modelo_final.py
@@ -54,13 +55,13 @@
      12630  scripts/build_dengue_web.py
       2794  scripts/build_epibot_zoom.py
       6862  scripts/build_neuro_gallery.py
-      3710  scripts/build_patent_bundle.sh
+      3728  scripts/build_patent_bundle.sh
      26480  scripts/build_tableau.py
      33993  scripts/build_web_knowledge.py
      13507  scripts/ci_process_boletines.py
      15535  scripts/compara_metricas.py
        534  scripts/compara_modelos.py
-     27019  scripts/compliance_check.py
+     27726  scripts/compliance_check.py
      10547  scripts/dengue_pronostico_nino.py
      15594  scripts/dengue_showcase_charts.py
        681  scripts/descarga_inegi.py
@@ -120,15 +121,15 @@
       2400  src/epiforecast/data/ingestion/inegi_constants.py
       4509  src/epiforecast/data/ingestion/inegi_utils.py
       9583  src/epiforecast/data/ingestion/inegi.py
-         0  src/epiforecast/data/loaders/__init__.py
+       321  src/epiforecast/data/loaders/__init__.py
          0  src/epiforecast/data/preprocessing/__init__.py
       6707  src/epiforecast/data/preprocessing/cleaner.py
       3170  src/epiforecast/data/preprocessing/filter.py
       3457  src/epiforecast/data/preprocessing/imputation.py
      12246  src/epiforecast/data/preprocessing/transformer.py
          0  src/epiforecast/evaluation/__init__.py
-      3631  src/epiforecast/evaluation/metrics.py
-      6277  src/epiforecast/evaluation/real_eval.py
+      3909  src/epiforecast/evaluation/metrics.py
+      6310  src/epiforecast/evaluation/real_eval.py
          0  src/epiforecast/features/__init__.py
       2718  src/epiforecast/features/demographic.py
          0  src/epiforecast/infrastructure/__init__.py
@@ -162,7 +163,7 @@
       6458  src/epiforecast/models/stacking/experts.py
       8328  src/epiforecast/models/stacking/meta_learner.py
      13106  src/epiforecast/models/stacking/model.py
-         0  src/epiforecast/pipelines/__init__.py
+       337  src/epiforecast/pipelines/__init__.py
          0  src/epiforecast/py.typed
          0  src/epiforecast/utils/__init__.py
       1927  src/epiforecast/utils/cohorts.py
@@ -203,6 +204,7 @@
          0  tests/integration/__init__.py
       3088  tests/integration/test_deepar_smoke.py
      10239  tests/integration/test_pipeline_e2e.py
+      3497  tests/integration/test_prophet_smoke.py
          0  tests/unit/__init__.py
          0  tests/unit/data/__init__.py
       9358  tests/unit/data/test_cleaner.py
