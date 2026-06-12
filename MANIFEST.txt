@@ -10,10 +10,12 @@
       5768  config/models/prophet.yaml
        826  config/models/stacking.yaml
       3259  config/visualization/plots.yaml
+      2709  docs/model_cards/deepar.md
       1926  docs/model_cards/ensemble.md
+      2725  docs/model_cards/nbglm.md
       1420  docs/model_cards/prophet.md
       2099  docs/model_cards/stacking.md
-      3486  docs/research/INFORME_ARQUITECTURA_MULTIMODELO.md
+      4151  docs/research/INFORME_ARQUITECTURA_MULTIMODELO.md
         85  epi_modules/__init__.py
      18069  epi_modules/engine.py
         44  epi_modules/features/__init__.py
@@ -35,10 +37,12 @@
       4199  epi_modules/views/help_menu.py
       3808  epi_modules/views/targets.py
      21293  epi.py
+     89641  Guia-Patente.pdf
+     17266  Guia-Patente.tex
       1184  LICENSE
      19850  Makefile
-      7747  pyproject.toml
-      9967  README_BUNDLE.md
+      7962  pyproject.toml
+      8694  README_BUNDLE.md
      36967  README.md
       1142  requirements.txt
       4631  scripts/actualiza_barra_fechas.py
@@ -50,7 +54,7 @@
      12630  scripts/build_dengue_web.py
       2794  scripts/build_epibot_zoom.py
       6862  scripts/build_neuro_gallery.py
-      3466  scripts/build_patent_bundle.sh
+      3710  scripts/build_patent_bundle.sh
      26480  scripts/build_tableau.py
      33993  scripts/build_web_knowledge.py
      13507  scripts/ci_process_boletines.py
@@ -62,7 +66,7 @@
        681  scripts/descarga_inegi.py
       8011  scripts/eda_dengue_charts.py
       4157  scripts/entrena_sagemaker.py
-     15925  scripts/entrena.py
+     16297  scripts/entrena.py
      18885  scripts/excel_produccion_charts.py
       4840  scripts/excel_produccion_fmt.py
       4524  scripts/extrae_dengue_a9091.py
@@ -84,7 +88,7 @@
        677  scripts/mapea.py
       3055  scripts/merge_dengue.py
       9780  scripts/patch_train_metrics.py
-     16853  scripts/predice.py
+     17107  scripts/predice.py
       9425  scripts/produccion_dengue.py
      13877  scripts/pronostico_congelado.py
       7867  scripts/publish_gsheets.py
@@ -193,9 +197,11 @@
       4715  src/epiforecast/visualization/series_plots.py
       1356  src/epiforecast/visualization/web_theme.py
          0  tests/__init__.py
-      3545  tests/conftest.py
+      4439  tests/conftest.py
          0  tests/fixtures/.gitkeep
+     22925  tests/fixtures/oni.ascii.txt
          0  tests/integration/__init__.py
+      3088  tests/integration/test_deepar_smoke.py
      10239  tests/integration/test_pipeline_e2e.py
          0  tests/unit/__init__.py
          0  tests/unit/data/__init__.py
@@ -236,6 +242,7 @@
       5523  tests/unit/test_nbglm.py
       2387  tests/unit/test_produccion_dengue.py
       4005  tests/unit/test_real_eval.py
+      6024  tests/unit/test_reselect_motor_2026.py
          0  tests/unit/utils/__init__.py
        770  tests/unit/utils/test_cli.py
       1261  tests/unit/utils/test_cohorts.py
