@@ -69,13 +69,7 @@
 \es{Este paquete contiene \textbf{únicamente la invención} y la evidencia de que funciona: el código de los motores, su configuración, la orquestación y las pruebas. Se excluye todo el material documental voluminoso, los datos clínicos del IMSS y los binarios de modelos. El repositorio completo pesa $\sim$5.5\,GB; la invención son $\sim$2.4\,MB.}
 \en{This bundle ships \textbf{only the invention} and the evidence that it works: the engine code, its configuration, the orchestration and the tests. All documentary bloat, the clinical IMSS data and the model binaries are excluded. The full repository is $\sim$5.5\,GB; the invention is $\sim$2.4\,MB.}
 
-% ── 2. Aviso legal ───────────────────────────────────────────────────────────
-\msec{Aviso legal (pendiente con asesoría)}{Legal notice (open item, pending counsel)}
-\noticebox{%
-{\small\textbf{\color{warnbd!60!black}ES\ \ }El paquete incluye por ahora la \texttt{LICENSE} vigente (\textbf{MIT}) y el código ya fue publicado públicamente (GitHub público; \texttt{epiforecast.mx} en vivo). Una publicación MIT abierta es \textbf{divulgación habilitante} y concede licencia irrevocable de uso/venta, lo que puede minar la novedad en jurisdicciones de novedad absoluta (MX, EPO). \textbf{Es una decisión de gobernanza para el asesor legal/PI, no un defecto del código.}}\\[5pt]
-{\small\textbf{\color{warnbd!60!black}EN\ \ }\itshape The bundle currently ships the existing \texttt{LICENSE} (\textbf{MIT}) and the source was already publicly published. An open MIT release is an \textbf{enabling public disclosure} and grants an irrevocable use/sell license, which can undermine novelty in absolute-novelty jurisdictions. \textbf{This is a governance decision for legal/IP counsel, not a code defect.}}}
-
-% ── 3. Estructura: carpeta y componente ──────────────────────────────────────
+% ── 2. Estructura: carpeta y componente ──────────────────────────────────────
 \msec{Estructura: carpeta y componente}{Structure: folder and component}
 {\renewcommand{\arraystretch}{1.08}\setlength{\tabcolsep}{4.5pt}\small
 \rowcolors{2}{rowalt}{white}
@@ -133,19 +127,16 @@
 \draw[flow] (fac) -- (base);
 \foreach \e in {e1,e2,e3,e4,e5} {\draw[flow] (base.south) -- (\e.north);}
 \draw[climflow] (enso.west) -- (e5.east);
-\draw[climflow] (enso.south) .. controls +(0,-1.3) and +(1.4,0.7) .. (e1.north east);
+\draw[climflow] (enso.west) -- (-0.7,10.45) -- (e1.north);
 % Stage 3
 \node[proc, text width=37mm] (s1) at (0.4,7.2) {\texttt{reselect\_motor\_2026}\\\scriptsize SMAPE 2026 + MASE (desempate)};
 \node[proc, text width=37mm] (s2) at (4.6,7.2) {\texttt{produccion\_dengue}\\\scriptsize banda 5\% $\rightarrow$ MAE};
 \node[proc, text width=37mm] (s3) at (8.8,7.2) {\texttt{forecast\_guards}\\\scriptsize clamp estacional (woy $\times$1.5)};
-\foreach \e in {e1,e2,e3,e4,e5} {\draw[flow, draw=indigo!35] (\e.south) -- ([yshift=3mm]s2.north);}
+% transiciones 2->3 y 3->4: una sola flecha central, dibujada tras los paneles
 % Stage 4
 \node[outb, text width=37mm] (o1) at (0.4,4.8) {\texttt{tableau.csv} \textperiodcentered\ \texttt{tabla\_333}};
 \node[outb, text width=37mm] (o2) at (4.6,4.8) {Web JSON \textperiodcentered\ EpiBot};
 \node[outb, text width=37mm] (o3) at (8.8,4.8) {Validación OOS\\\scriptsize \texttt{pronostico\_congelado}};
-\draw[flow] (s1.south) -- (o1.north);
-\draw[flow] (s2.south) -- (o2.north);
-\draw[flow] (s3.south) -- (o3.north);
 % Panels (background)
 \begin{scope}[on background layer]
   \node[rectangle, rounded corners=6pt, draw=rulec, line width=0.8pt, fill=panelb,
@@ -157,6 +148,9 @@
   \node[rectangle, rounded corners=6pt, draw=rulec, line width=0.8pt, fill=panelb,
         fit=(o1)(o2)(o3), inner sep=7pt] (p4) {};
 \end{scope}
+% Espina central limpia entre etapas
+\draw[flow, line width=1.5pt] (p2.south) -- (p3.north);
+\draw[flow, line width=1.5pt] (p3.south) -- (p4.north);
 \node[plabel] at (p1.north west) {\ \ {\large\textcolor{accent}{1}}\ \ Ingesta de datos\ \textbar\ Data ingestion};
 \node[plabel] at (p2.north west) {\ \ {\large\textcolor{accent}{2}}\ \ Pronóstico multi-motor — Factory / Strategy (SOLID)};
 \node[plabel] at (p3.north west) {\ \ {\large\textcolor{accent}{3}}\ \ Selección productiva por serie\ \textbar\ Per-series selection};
@@ -164,7 +158,7 @@
 \end{tikzpicture}}
 \end{center}
 \vspace{-2pt}
-{\footnotesize\color{soft}El método es \emph{config-driven} (\texttt{config/}); el regresor de El Niño (ENSO/ONI, líneas punteadas) alimenta a NBGLM y Prophet. \textit{The method is config-driven; the El Niño regressor (dashed) feeds NBGLM and Prophet.}}
+{\footnotesize\color{soft}El método es \emph{config-driven} (\texttt{config/}); el regresor de El Niño (ENSO/ONI, punteado) alimenta a NBGLM y Prophet. \textbf{Cohortes:} neuro —Depresión, Parkinson, Alzheimer— con 333 modelos (Prophet\,\textperiodcentered\,DeepAR\,\textperiodcentered\,Ensemble\,\textperiodcentered\,Stacking) y Dengue (DeepAR\,\textperiodcentered\,Prophet\,\textperiodcentered\,NBGLM). \textbf{Horizonte:} 52 semanas + proyección ilustrativa a 5 años.\\ \textit{Config-driven; the El Niño regressor (dashed) feeds NBGLM and Prophet. Cohorts: neuro (333 models) and Dengue. Horizon: 52 weeks + 5-year illustrative projection.}}
 
 % ── 5. Mapa de IP patentable ─────────────────────────────────────────────────
 \msec{Mapa de IP patentable}{Patentable IP map}
