@@ -41,7 +41,7 @@
      17266  Guia-Patente.tex
       1184  LICENSE
      19850  Makefile
-      7962  pyproject.toml
+      8019  pyproject.toml
       8694  README_BUNDLE.md
      36967  README.md
       6363  requirements.lock
@@ -61,7 +61,7 @@
      13507  scripts/ci_process_boletines.py
      15535  scripts/compara_metricas.py
        534  scripts/compara_modelos.py
-     27726  scripts/compliance_check.py
+     27662  scripts/compliance_check.py
      10547  scripts/dengue_pronostico_nino.py
      15594  scripts/dengue_showcase_charts.py
        681  scripts/descarga_inegi.py
@@ -180,10 +180,12 @@
       1090  src/epiforecast/visualization/chart_constants.py
       4482  src/epiforecast/visualization/chart_renderer.py
      16270  src/epiforecast/visualization/comparison_bars.py
-     22231  src/epiforecast/visualization/comparison_builders.py
+     11611  src/epiforecast/visualization/comparison_builders.py
        791  src/epiforecast/visualization/comparison_config.py
       6501  src/epiforecast/visualization/comparison_css.py
      12423  src/epiforecast/visualization/comparison_html.py
+      7324  src/epiforecast/visualization/comparison_metrics.py
+      5099  src/epiforecast/visualization/comparison_panels.py
       9423  src/epiforecast/visualization/comparison_plots.py
       5230  src/epiforecast/visualization/comparison_report.py
       5569  src/epiforecast/visualization/eda_plots.py
@@ -257,6 +259,7 @@
       4962  tests/unit/visualization/test_chart_annotations.py
        866  tests/unit/visualization/test_chart_constants.py
       6501  tests/unit/visualization/test_comparison_bars.py
+      3801  tests/unit/visualization/test_comparison_builders.py
       8138  tests/unit/visualization/test_comparison_html.py
       3855  tests/unit/visualization/test_comparison_plots.py
       9821  tests/unit/visualization/test_comparison_report.py

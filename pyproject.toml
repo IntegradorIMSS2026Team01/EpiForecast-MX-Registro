@@ -160,6 +160,8 @@ module = [
     "epiforecast.visualization.chart_renderer",
     "epiforecast.visualization.chart_annotations",
     "epiforecast.visualization.comparison_builders",
+    "epiforecast.visualization.comparison_panels",
+    "epiforecast.visualization.comparison_metrics",
     "epiforecast.visualization.series_plots",
     "epiforecast.visualization.avance5_charts",
 ]
@@ -205,7 +207,6 @@ omit = [
     "*/tests/*",
     "*/__init__.py",
     "*/visualization/comparison_css.py",
-    "*/visualization/comparison_builders.py",
     "*/visualization/comparison_plots.py",
     "*/visualization/comparison_report.py",
     "*/visualization/avance5_tables.py",
