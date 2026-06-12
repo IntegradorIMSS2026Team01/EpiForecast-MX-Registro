@@ -1,0 +1,50 @@
+# =====================================================================
+# EpiForecast-MX: Dependencias directas (generado desde pyproject.toml)
+# Fuente de verdad: pyproject.toml  |  Instalar: pip install -e ".[dev]"
+# =====================================================================
+
+# Core
+pandas==2.3.0
+numpy==2.0.0
+scikit-learn==1.5.0
+scipy==1.14.1
+omegaconf==2.3.0
+loguru==0.7.3
+rich==13.9.4
+requests==2.32.5
+boto3==1.42.30
+typer==0.20.1
+openpyxl==3.1.5
+google-generativeai==0.8.5
+
+# Time Series Forecasting
+prophet==1.3.0
+cmdstanpy==1.3.0
+gluonts[torch]==0.16.2
+xgboost==2.1.4
+lightgbm==4.6.0
+statsmodels==0.14.4
+
+# Visualization
+matplotlib==3.10.0
+seaborn==0.13.2
+
+# PDF Processing
+camelot-py[cv]==0.11.0
+pypdf==4.3.1
+reportlab==4.4.7
+
+# --------------- Optional (pip install -e ".[group]") ----------------
+
+# Dev: pip install -e ".[dev]"
+# pytest==9.0.2  pytest-cov==7.0.0  pytest-xdist==3.8.0
+# ruff==0.14.10  mypy==1.19.1  pre-commit==4.5.1  ipykernel==6.29.0
+
+# MLflow: pip install -e ".[mlflow]"
+# mlflow==3.10.0
+
+# DVC: pip install -e ".[dvc]"
+# dvc[s3]==3.66.1
+
+# Scraping: pip install -e ".[scraping]"
+# selenium==4.40.0

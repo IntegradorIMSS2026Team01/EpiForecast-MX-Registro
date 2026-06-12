@@ -1,0 +1,61 @@
+# Configuración para DeepAR (GluonTS + PyTorch, entrenamiento local en CPU)
+
+deepar:
+  multi_series: true                   # Entrenar con 32 series estatales (solo nivel nacional)
+  epochs: 300                        # Early stopping frena si converge antes
+  context_length: 104                # 2 años de historia (captura ciclos anuales completos)
+  prediction_length: 52              # Un año de predicción (horizonte)
+  num_layers: 2                      # Número de capas recurrentes
+  num_cells: 80                      # Celdas por capa (más capacidad para patrones complejos)
+  dropout_rate: 0.15                 # Regularización (mayor con 1 sola serie)
+  learning_rate: 5e-4                # Convergencia más estable
+  weight_decay: 1e-6                 # Regularización L2
+  batch_size: 32
+  scaling: true                      # Normalización interna de GluonTS (mean scaling)
+  distr_output: "student-t"          # Robusto a outliers, default de GluonTS
+  num_samples: 200                   # Muestras Monte Carlo para intervalos de confianza
+  freq: "W-MON"                      # Frecuencia de la serie temporal
+  nonnegative_pred_samples: true     # Predicciones siempre >= 0
+  num_batches_per_epoch: 50          # Default de GluonTS (antes calculado ~20)
+  early_stopping_patience: 15        # Detener si train_loss no mejora en 15 epochs
+  eval_epochs_min: 25                # _eval_rapida: piso de epochs del hold-out
+  eval_epochs_divisor: 4             # _eval_rapida: epochs = max(min, epochs // divisor)
+  skip_cv_estatal: true               # false: CV completo por estado (lento, metricas por fold)
+
+  # Overrides para cohortes de menor historia que la neuro (p.ej. Dengue, A97.x desde
+  # 2018-W27 ~ 322 sem de entrenamiento vs ~500+ de neuro). GluonTS entrena sobre ventanas
+  # de (context_length + max_lag), y para una CV honesta (sin padding de ceros) cada fold
+  # necesita >= esa longitud de datos reales. Con 322 sem cabe un contexto de 2 años, pero
+  # NO la CV completa neuro (4x53) ni los lags de 3 años. Estos overrides ajustan memoria,
+  # lags y CV a la historia disponible sin fabricar datos (la serie es la real).
+  short_series:
+    enabled: true
+    context_length: 104               # 2 ciclos anuales completos (clave para estacionalidad dengue)
+    max_lag: 53                       # Capar lags a 1 año + 1: conserva el lag anual (52 sem),
+                                      #   descarta los de 2-3 años (mantiene folds de CV sanos)
+    cv_n_splits: 2                    # CV ligera: fold-1 ~270 sem >= past_length (105), sin padding
+    cv_test_size: 26                  # Ventana de validacion de medio año por fold
+    gap_fill: "interpolate"           # Semanas faltantes (boletin ausente) se interpolan, no se ponen en 0
+    multi_series: false               # Nacional sobre serie AGREGADA (no 32 estados casi-cero):
+                                      #   metricas comparables con Prophet/Ensemble/Stacking
+    # NOTA: se probó distr_output=negative-binomial (conteos enteros, sin tasa). Con una métrica
+    # consistente NO mostró mejora clara sobre student-t (~28 ambos en el nacional; DeepAR es
+    # estocástico y la comparación inicial mezcló métodos de eval). Dado que no mejora y añade
+    # restricciones (target entero), se conserva student-t + tasa, la config desplegada y validada.
+    # Ver docs/research/hallazgos/DENGUE_MEJORAS_FASE4.md.
+
+# Hiperparámetros específicos por padecimiento
+param_grid_deepar:
+  alzheimer:
+    epochs: [50, 100]
+    num_layers: [2, 3]
+  depresion:
+    epochs: [100, 150]
+    num_layers: [2, 3]
+  parkinson:
+    epochs: [50, 100]
+    num_layers: [2]
+  dengue:
+    # Arbovirosis con ciclo anual marcado y picos; más épocas para captar la estacionalidad.
+    epochs: [100, 150]
+    num_layers: [2, 3]
